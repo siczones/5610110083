@@ -16,9 +16,8 @@ public abstract class Shapes {
 	}
 	
 	abstract public void draw(Graphics2D g);
-	
 	public Double getRectangle() {
-		return new Rectangle2D.Double(x, y, width, height);		//get item property
+		return new Rectangle2D.Double(x, y, width, height);		//get shape property
 	}
 
 }

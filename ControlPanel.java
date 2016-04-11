@@ -3,35 +3,32 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JPanel;
 
 public class ControlPanel extends JPanel {
-
 	private BufferedImage bi;	
 	Graphics2D big;
-
 	Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension d = tk.getScreenSize();
-
 	ArrayList<Shapes> shapes = new ArrayList<Shapes>();
 	
 	public ControlPanel() {
+		//test
+		System.out.println("@ ControlPanel Active");
+
 		bi = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
 		big = (Graphics2D) bi.getGraphics();
 		big.setBackground(Color.PINK);
 	}
 
+	//show spaceShip on monitor
 	public void updateGameUI(){
 		big.clearRect(0, 0, d.width, d.height);
-		
 		for(Shapes s : shapes){
 			s.draw(big);
 		}
-		
 		repaint();
 	}
 
