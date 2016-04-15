@@ -13,11 +13,14 @@ public class ControlPanel extends JPanel {
 	Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension d = tk.getScreenSize();
 	ArrayList<Shapes> shapes = new ArrayList<Shapes>();
+	private int widthScreen;
+	private int hieghtScreen;
 	
-	public ControlPanel() {
-		//test
-		System.out.println("@ ControlPanel Active");
+	public ControlPanel(int widthScreen, int hieghtScreen) {
+		System.out.println("@ ControlPanel Active");							//test class active
 
+		this.widthScreen = widthScreen;
+		this.hieghtScreen = hieghtScreen;
 		bi = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
 		big = (Graphics2D) bi.getGraphics();
 		big.setBackground(Color.PINK);
@@ -32,6 +35,13 @@ public class ControlPanel extends JPanel {
 		repaint();
 	}
 
+	public int getWidthScreen(){
+		return widthScreen;
+	}
+
+	public int getHieghtScreen(){
+		return hieghtScreen;
+	}
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

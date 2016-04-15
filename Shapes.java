@@ -20,4 +20,11 @@ public abstract class Shapes {
 		return new Rectangle2D.Double(x, y, width, height);		//get shape property
 	}
 
+	public int getWidth(){
+		return width;
+	}
+
+	public int getHeight(){
+		return height;
+	}
 }

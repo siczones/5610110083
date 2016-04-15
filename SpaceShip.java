@@ -1,15 +1,19 @@
+// Defintion SpaceShip charector 
+// SpaceShip.java
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JFrame;
+
 public class SpaceShip extends Shapes{
 	int step = 10;												//step move spaceship
-	int widthScreen;
+	int widthScreen; 
 	
 	public SpaceShip(int x, int y, int width, int height, int widthScreen) {
 		super(x, y, width, height);								//send argument SpaceShip to Shapes
 		this.widthScreen = widthScreen;
-		//test
-		System.out.println("@ SpaceShip Active");
+		System.out.println("@ SpaceShip Active");				//test class active
 	}
 
 	@Override
@@ -27,5 +31,4 @@ public class SpaceShip extends Shapes{
 		if(x >= widthScreen - (width + width/2))
 			x = widthScreen - (width + width/2);
 	}
-
 }
