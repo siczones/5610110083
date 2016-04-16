@@ -27,10 +27,14 @@ public class ControlPanel extends JPanel {
 	}
 
 	//show spaceShip on monitor
-	public void updateGameUI(){
+	public void updateGameUI(Score score){
 		big.clearRect(0, 0, d.width, d.height);
+		big.setColor(Color.BLUE);												//set score color
+
+		//draw score is xxxx,xxxx form and set score posision(x,y);16 is size of 8 charector 
+		big.drawString(String.format("%08d", score.getScore()), widthScreen/2 - 16 , 20);	
 		for(Shapes s : shapes){
-			s.draw(big);
+			s.draw(big);														
 		}
 		repaint();
 	}

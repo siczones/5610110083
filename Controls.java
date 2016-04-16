@@ -8,17 +8,20 @@ import javax.swing.Timer;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-public class Controls implements KeyListener{
+public class Controls implements KeyListener, Score{
 	private ControlPanel cp;
 	private SpaceShip ss;	
 	private Timer timer;
-	private double gameLevel = 0.3;
+	private double gameLevel;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
+	private long score;
 
 	public Controls(ControlPanel cp, SpaceShip ss){
 		this.cp = cp;
 		this.ss = ss;		
 		cp.shapes.add(ss);										//add SpaceShip
+		gameLevel = 0.2;
+		score = 0;
 
 		System.out.println("@ Controls Active");				//test class active
 
@@ -47,9 +50,11 @@ public class Controls implements KeyListener{
 			if(!e.isAlive()){									//check thread running and remove when not running
 				e_iter.remove();
 				cp.shapes.remove(e);
+				score+=5;										//Score up 5 point per time
+				//System.out.println(score);
 			}
 		}
-		cp.updateGameUI();
+		cp.updateGameUI(this);
 	}
 		
 	void generateEnemy(){										//Create random posision enemy
@@ -74,6 +79,10 @@ public class Controls implements KeyListener{
 		}
 	}
 	
+	public long getScore(){										//get current score
+		return score;
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		controlVehicle(e);
