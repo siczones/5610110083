@@ -38,6 +38,10 @@ public class Controls implements KeyListener, Score{
 		timer.start();
 	}
 
+	public void stop(){
+		timer.stop();
+	}
+
 	private void process(){
 		if(Math.random() < gameLevel){
 			generateEnemy();
@@ -53,8 +57,19 @@ public class Controls implements KeyListener, Score{
 				score+=5;										//Score up 5 point per time
 				//System.out.println(score);
 			}
+
+			cp.updateGameUI(this);
+			Rectangle2D.Double ssRect = ss.getRectangle();
+			Rectangle2D.Double eRect;
+			for(Enemy enemy : enemies){
+				eRect = enemy.getRectangle();
+				if(eRect.intersects(ssRect)){					//game stop when enemy intersect with spaceship
+					stop();
+					return;										//exist from process current method
+				}
+			}
 		}
-		cp.updateGameUI(this);
+		
 	}
 		
 	void generateEnemy(){										//Create random posision enemy
