@@ -9,7 +9,7 @@ public class Enemy extends Shapes{
 	private int Y_TO_FADE ;
 	private int Y_TO_DIE ;
 	
-	private int step = 10;
+	private int step = 6;
 	private boolean alive = true;
 	
 	public Enemy(int x, int y, int heightScreen){

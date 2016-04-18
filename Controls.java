@@ -34,11 +34,11 @@ public class Controls implements KeyListener, Score{
 		timer.setRepeats(true);									//set time repeats
 	}
 	
-	public void start(){
+	public void start(){										//start game
 		timer.start();
 	}
 
-	public void stop(){
+	public void stop(){											//stop game
 		timer.stop();
 	}
 
@@ -80,7 +80,7 @@ public class Controls implements KeyListener, Score{
 		enemies.add(e);
 	}
 
-	void controlVehicle(KeyEvent e) {							//move controls input by keypad
+	void controlVehicle(KeyEvent e) {							//define move controls from input (by keypad)
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 			ss.move(-1);
@@ -88,6 +88,13 @@ public class Controls implements KeyListener, Score{
 		case KeyEvent.VK_RIGHT:
 			ss.move(1);
 			break;
+		case KeyEvent.VK_UP:
+			ss.move(-2);
+			break;
+		case KeyEvent.VK_DOWN:
+			ss.move(2);
+			break;
+
 		case KeyEvent.VK_D:
 			gameLevel += 0.1;
 			break;
@@ -100,7 +107,7 @@ public class Controls implements KeyListener, Score{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		controlVehicle(e);
+		controlVehicle(e);										//check Vehicle condition when key pressed
 	}
 
 	@Override

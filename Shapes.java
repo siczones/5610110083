@@ -20,11 +20,11 @@ public abstract class Shapes {
 		return new Rectangle2D.Double(x, y, width, height);		//get shape property
 	}
 
-	public int getWidth(){
+	public int getWidth(){										//get width of spaceship
 		return width;
 	}
 
-	public int getHeight(){
+	public int getHeight(){										//get hieght of spaceship
 		return height;
 	}
 }

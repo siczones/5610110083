@@ -22,7 +22,7 @@ public class Main {
 		frame.getContentPane().add(cp, BorderLayout.CENTER);				//add ControlPanel		
 
 		//System.out.println(d.width + ":" + d.height);
-		SpaceShip ss = new SpaceShip(330, 330, 40, 20, WIDTH_SCREEN);		//add spaceship posision (x, y, width_size, height_size)
+		SpaceShip ss = new SpaceShip(330, 340, 40, 20, WIDTH_SCREEN, HEIGTH_SCREEN);//add spaceship posision (x, y, width_size, height_size)
 		Controls c = new Controls(cp, ss);
 		frame.addKeyListener(c);
 		c.start();
