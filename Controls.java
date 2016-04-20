@@ -13,6 +13,7 @@ public class Controls implements KeyListener, Score{
 	private SpaceShip ss;	
 	private Timer timer;
 	private double gameLevel;
+	private int speedUp = 5;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
 	private long score;
 
@@ -22,7 +23,6 @@ public class Controls implements KeyListener, Score{
 		cp.shapes.add(ss);										//add SpaceShip
 		gameLevel = 0.2;
 		score = 0;
-
 		System.out.println("@ Controls Active");				//test class active
 
 		timer = new Timer(40, new ActionListener(){
@@ -55,6 +55,14 @@ public class Controls implements KeyListener, Score{
 				e_iter.remove();
 				cp.shapes.remove(e);
 				score+=5;										//Score up 5 point per time
+
+				if((score % 100 == 0) && (score != 0)){
+					speedUp += 2;								//speed up when score up == 100
+					e.setSpeed(speedUp);
+					//System.out.println(speedUp);
+					//System.out.println(e.getSpeed());
+				}
+
 				//System.out.println(score);
 			}
 
