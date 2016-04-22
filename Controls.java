@@ -16,13 +16,14 @@ public class Controls implements KeyListener, Score{
 	private int speedUp = 5;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
 	private long score;
-
+	private boolean flag;										//variable for keep game running status
 	public Controls(ControlPanel cp, SpaceShip ss){
 		this.cp = cp;
 		this.ss = ss;		
 		cp.shapes.add(ss);										//add SpaceShip
 		gameLevel = 0.2;
 		score = 0;
+		flag = false;
 		System.out.println("@ Controls Active");				//test class active
 
 		timer = new Timer(40, new ActionListener(){
@@ -73,6 +74,7 @@ public class Controls implements KeyListener, Score{
 				eRect = enemy.getRectangle();
 				if(eRect.intersects(ssRect)){					//game stop when enemy intersect with spaceship
 					stop();
+					restartBtn();								//show restart button when game stop
 					return;										//exist from process current method
 				}
 			}
@@ -111,6 +113,10 @@ public class Controls implements KeyListener, Score{
 	
 	public long getScore(){										//get current score
 		return score;
+	}
+
+	public void restartBtn(){
+		cp.showRsBtn();														//define show restart button
 	}
 
 	@Override
