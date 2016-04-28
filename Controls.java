@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import javax.swing.Timer;
-
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -16,13 +15,16 @@ public class Controls implements KeyListener, Score{
 	private int speedUp = 5;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
 	private long score;
+	private long maxScore;
 	private boolean flag;										//variable for keep game running status
+
 	public Controls(ControlPanel cp, SpaceShip ss){
 		this.cp = cp;
 		this.ss = ss;		
 		cp.shapes.add(ss);										//add SpaceShip
 		gameLevel = 0.2;
 		score = 0;
+		maxScore = 0;
 		flag = false;
 		System.out.println("@ Controls Active");				//test class active
 
@@ -43,11 +45,17 @@ public class Controls implements KeyListener, Score{
 		timer.stop();
 	}
 
+	public void reset(){
+		flag = false;											//is not generate enemy
+		score = 0;
+		System.out.print("+");
+	}
+		
 	private void process(){
-		if(Math.random() < gameLevel){
+		if((Math.random() < gameLevel) && (!flag)){
 			generateEnemy();
 		}
-
+		
 		Iterator<Enemy> e_iter = enemies.iterator();
 		while(e_iter.hasNext()){
 			Enemy e = e_iter.next();
@@ -73,10 +81,15 @@ public class Controls implements KeyListener, Score{
 			for(Enemy enemy : enemies){
 				eRect = enemy.getRectangle();
 				if(eRect.intersects(ssRect)){					//game stop when enemy intersect with spaceship
-					stop();
-					restartBtn();								//show restart button when game stop
-					return;										//exist from process current method
+					flag = true;
+					if(score > maxScore){
+						maxScore = score;
+					}
 				}
+				else if(flag){
+					reset();
+				}
+					//return;										//exist from process current method
 			}
 		}
 		
@@ -115,8 +128,8 @@ public class Controls implements KeyListener, Score{
 		return score;
 	}
 
-	public void restartBtn(){
-		cp.showRsBtn();														//define show restart button
+	public long getMaxScore(){									//get max score
+		return maxScore;
 	}
 
 	@Override

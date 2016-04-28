@@ -49,7 +49,8 @@ public class ControlPanel extends JPanel {
 		big.setColor(Color.yellow);												//set score color
 		Background();
 		//draw score is xxxx,xxxx form and set score posision(x,y);16 is size of 8 charector 
-		big.drawString(String.format("%08d", score.getScore()), widthScreen/2 - 16 , 20);	
+		big.drawString(String.format("SCORE: "+"%08d", score.getScore()), widthScreen/2 - 60 , 20);	
+		big.drawString(String.format("MAX: "+"%08d", score.getMaxScore()), widthScreen - 120 , 20);	
 		for(Shapes s : shapes){
 			s.draw(big);														
 		}
@@ -63,12 +64,7 @@ public class ControlPanel extends JPanel {
 	public int getHieghtScreen(){
 		return hieghtScreen;
 	}
-
-	public void showRsBtn(){
-		JButton RsBtn = new JButton("RESTART");
-		RsBtn.setPreferredSize(new Dimension(100, 60));
-		System.out.println("\nRestart button active");
-	}
+	
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
