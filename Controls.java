@@ -12,20 +12,24 @@ public class Controls implements KeyListener, Score{
 	private SpaceShip ss;	
 	private Timer timer;
 	private double gameLevel;
-	private int speedUp = 5;
+	private int speedUp;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
 	private long score;
 	private long maxScore;
 	private boolean flag;										//variable for keep game running status
+	private boolean mute;
+	private AudioLoader audio;
 
 	public Controls(ControlPanel cp, SpaceShip ss){
 		this.cp = cp;
-		this.ss = ss;		
+		this.ss = ss;
+		speedUp = 5;
 		cp.shapes.add(ss);										//add SpaceShip
 		gameLevel = 0.2;
 		score = 0;
 		maxScore = 0;
 		flag = false;
+		mute = false;
 		System.out.println("@ Controls Active");				//test class active
 
 		timer = new Timer(40, new ActionListener(){
@@ -48,6 +52,8 @@ public class Controls implements KeyListener, Score{
 	public void reset(){
 		flag = false;											//is not generate enemy
 		score = 0;
+		speedUp = 5;
+		gameLevel = 0.2;
 		System.out.print("+");
 	}
 		
@@ -70,6 +76,8 @@ public class Controls implements KeyListener, Score{
 					e.setSpeed(speedUp);
 					//System.out.println(speedUp);
 					//System.out.println(e.getSpeed());
+					if((score % 1000 == 0) && (score != 0))		//level up ever 1000 point
+						gameLevel += 0.1;
 				}
 
 				//System.out.println(score);
@@ -85,11 +93,13 @@ public class Controls implements KeyListener, Score{
 					if(score > maxScore){
 						maxScore = score;
 					}
+					if(!mute)
+						new AudioLoader("audios/die.wav");			//play now audio when die
 				}
 				else if(flag){
 					reset();
 				}
-					//return;										//exist from process current method
+					//return;									//exist from process current method
 			}
 		}
 		
@@ -107,19 +117,29 @@ public class Controls implements KeyListener, Score{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 			ss.move(-1);
+			if(!mute)												//play audio when not mute
+				new AudioLoader("audios/ding.wav");					//play now audio when spaceship as Vehicle
 			break;
 		case KeyEvent.VK_RIGHT:
 			ss.move(1);
+			if(!mute)												//play audio when not mute
+				new AudioLoader("audios/ding.wav");					//play now audio when spaceship as Vehicle
 			break;
 		case KeyEvent.VK_UP:
 			ss.move(-2);
+			if(!mute)												//play audio when not mute
+				new AudioLoader("audios/ding.wav");					//play now audio when spaceship as Vehicle
 			break;
 		case KeyEvent.VK_DOWN:
 			ss.move(2);
+			if(!mute)												//play audio when not mute
+				new AudioLoader("audios/ding.wav");					//play now audio when spaceship as Vehicle
+			break;		
+		case KeyEvent.VK_END :
+			System.exit(0);										//press key End to exit 
 			break;
-
-		case KeyEvent.VK_D:
-			gameLevel += 0.1;
+		case KeyEvent.VK_M:
+			mute = !mute;
 			break;
 		}
 	}

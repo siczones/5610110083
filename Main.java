@@ -12,12 +12,13 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Exit program when click close button
 		frame.setSize(WIDTH_SCREEN, HEIGTH_SCREEN);							//Set frame size width and height
 		frame.setLocation(300, 100);										//Set frame location on monitor
+		frame.setResizable(false);											//Fix frame size
 		frame.getContentPane().setLayout(new BorderLayout());
 		
 		Toolkit tk = Toolkit.getDefaultToolkit(); 
 		try{
 			Image img = tk.getImage("images/logo.png");						
-			frame.setIconImage(img);											//set icon from directory
+			frame.setIconImage(img);										//set icon from directory
 		}catch (Exception ex) {
             // handle exception...
        	}

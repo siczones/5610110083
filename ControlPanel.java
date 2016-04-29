@@ -46,11 +46,13 @@ public class ControlPanel extends JPanel {
 	//show spaceShip & score on monitor
 	public void updateGameUI(Score score){
 		big.clearRect(0, 0, d.width, d.height);
-		big.setColor(Color.yellow);												//set score color
+		big.setColor(Color.yellow);																				//set score color
 		Background();
 		//draw score is xxxx,xxxx form and set score posision(x,y);16 is size of 8 charector 
-		big.drawString(String.format("SCORE: "+"%08d", score.getScore()), widthScreen/2 - 60 , 20);	
-		big.drawString(String.format("MAX: "+"%08d", score.getMaxScore()), widthScreen - 120 , 20);	
+		big.drawString(String.format("SCORE: "+"%08d", score.getScore()), widthScreen/2 - 60 , 20);				//show current score
+		big.drawString(String.format("MAX: "+"%08d", score.getMaxScore()), widthScreen - 120 , 20);				//show max score
+		big.drawString(String.format("Mute : [M]   Exit : [End]"), 0 , 40);								
+		big.drawString(String.format("Controls : [UP] [DOWN] [LEFT] [RIGHT]"), 0 , 20);		//show help & Tip.
 		for(Shapes s : shapes){
 			s.draw(big);														
 		}
